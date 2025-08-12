@@ -1,7 +1,7 @@
 module vlex
 
 pub struct Token {
-	typ    string
+	type   string
 	lexeme string
 mut:
 	line   int
@@ -60,7 +60,7 @@ fn (mut lexer Vlex) tokenize(input string) []Token {
 		if !matched {
 			lexeme := input[pos..pos + 1]
 			tokens << Token{
-				typ:    'ILLEGAL'
+				type:   'ILLEGAL'
 				lexeme: lexeme
 				line:   line
 				column: col

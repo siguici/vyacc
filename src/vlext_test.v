@@ -98,7 +98,7 @@ fn match_symbol(input string) ?int {
 
 fn action_integer(lexeme string) Token {
 	return Token{
-		typ:    'INTEGER'
+		type:   'INTEGER'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -107,7 +107,7 @@ fn action_integer(lexeme string) Token {
 
 fn action_float(lexeme string) Token {
 	return Token{
-		typ:    'FLOAT'
+		type:   'FLOAT'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -116,7 +116,7 @@ fn action_float(lexeme string) Token {
 
 fn action_whitespace(lexeme string) Token {
 	return Token{
-		typ:    'WHITESPACE'
+		type:   'WHITESPACE'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -125,7 +125,7 @@ fn action_whitespace(lexeme string) Token {
 
 fn action_identifier(lexeme string) Token {
 	return Token{
-		typ:    'IDENTIFIER'
+		type:   'IDENTIFIER'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -134,7 +134,7 @@ fn action_identifier(lexeme string) Token {
 
 fn action_string(lexeme string) Token {
 	return Token{
-		typ:    'STRING'
+		type:   'STRING'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -143,7 +143,7 @@ fn action_string(lexeme string) Token {
 
 fn action_comment(lexeme string) Token {
 	return Token{
-		typ:    'COMMENT'
+		type:   'COMMENT'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -152,7 +152,7 @@ fn action_comment(lexeme string) Token {
 
 fn action_symbol(lexeme string) Token {
 	return Token{
-		typ:    'SYMBOL'
+		type:   'SYMBOL'
 		lexeme: lexeme
 		line:   0
 		column: 0
@@ -209,8 +209,8 @@ fn test_vlex() {
 	tokens := lexer.tokenize(input)
 
 	for t in tokens {
-		if t.typ != 'WHITESPACE' {
-			println('${t.line}:${t.column} [${t.typ}] -> "${t.lexeme}"')
+		if t.type != 'WHITESPACE' {
+			println('${t.line}:${t.column} [${t.type}] -> "${t.lexeme}"')
 		}
 	}
 }
