@@ -198,7 +198,7 @@ fn test_vlex() {
 		},
 	]
 
-	mut lexer := new_vlex(rules)
+	mut lexer := new(rules)
 
 	input := '
     // Ceci est un commentaire

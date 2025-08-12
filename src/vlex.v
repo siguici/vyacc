@@ -22,10 +22,14 @@ pub struct Vlex {
 	rules []Rule
 }
 
-pub fn new_vlex(rules []Rule) Vlex {
+pub fn Vlex.new(rules []Rule) Vlex {
 	return Vlex{
 		rules: rules
 	}
+}
+
+pub fn new(rules []Rule) Vlex {
+	return Vlex.new(rules)
 }
 
 fn (mut lexer Vlex) tokenize(input string) []Token {
