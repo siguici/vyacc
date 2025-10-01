@@ -1,95 +1,110 @@
-# Vlex ⚡️
+# 📘 Vyacc – LALR(1) Parser Generator in V
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-**Vlex** is a **general-purpose**, lightweight, and flexible lexer written in **Vlang**,
-inspired by classic tools like Flex.  
-It allows you to define lexical rules dynamically (patterns + actions)
-and tokenize any input text with ease.
+> **Vyacc** is a **LALR(1) parser generator** written in [Vlang](https://vlang.io),
+inspired by Yacc/Bison but designed to be **modern, simple, and modular**.  
+> Its main goal is to make the development of programming languages, DSLs,
+and robust parsers **easier and more efficient**.  
 
 ---
 
 ## 🚀 Features
 
-- 🔧 Define custom lexical rules with simple patterns and associated actions  
-- 🔢 Supports common token types: integers, floats, identifiers, strings,
-comments, symbols, whitespace, and more  
-- ❌ Detects lexical errors and returns `ILLEGAL` tokens for invalid input  
-- 📍 Tracks line and column positions for each token  
-- 🧩 Modular and extensible architecture for easy addition of new token types  
-- 🛠️ Pure Vlang implementation with **no external dependencies**  
+- 📚 Full support for **LALR(1) grammars**  
+- 🛠 Automatic **AST (Abstract Syntax Tree)** generation  
+- 🏎 Native performance powered by V  
+- 🎯 Clear syntax, familiar to **Yacc/Bison** users  
+- 🔗 Easy integration with your V projects  
 
 ---
 
 ## ⚙️ Installation
 
-### Via VPM (Recommended)
+### 🔹 Via VPM (Recommended)
 
 ```sh
-v install siguici.vlex
-```
+v install siguici.vyacc
+````
 
-### Via Git
+📦 [Vyacc on VPM](https://vpm.vlang.io/packages/siguici.vyacc)
+
+---
+
+### 🔹 Via Git
 
 ```sh
-mkdir -p ${V_MODULES:-$HOME/.vmodules}/siguici
-git clone --depth=1 https://github.com/siguici/vlex ${V_MODULES:-$HOME/.vmodules}/siguici/vlex
+mkdir -p ${VMODULES:-$HOME/.vmodules}/siguici
+git clone --depth=1 https://github.com/siguici/vyacc ${VMODULES:-$HOME/.vmodules}/siguici/vyacc
 ```
 
-### As a project dependency
+---
 
-```v
+### 🔹 As a project dependency
+
+In your `v.mod` file:
+
+```vmod
 Module {
-  dependencies: ['siguici.vlex']
+  dependencies: ['siguici.vyacc']
 }
 ```
 
 ---
 
-## 📝 Usage
+### 🔹 Native installers
 
-Create an array of `Rule` objects specifying how to match tokens
-and their corresponding actions.
-Instantiate a `Vlex` lexer with these rules,
-then call `tokenize(input_string)` to get all tokens.
+The repository also provides native installers for manual installation:
 
-```v
-import siguici.vlex
+- **Linux / macOS** : `install.sh`
+- **Windows** : `install.ps1`
 
-fn main() {
-    rules := [ /* your rules here */ ]
-    mut lexer := vlex.new(rules)
-    tokens := lexer.tokenize("your code here")
+---
 
-    for token in tokens {
-        println('${token.line}:${token.column} [${token.typ}] -> "${token.lexeme}"')
-    }
-}
+## 🖥 Usage
+
+Minimal example of a grammar file `example.y`:
+
+```yacc
+%token NUMBER
+%left '+' '-'
+%left '*' '/'
+
+%%
+expr: expr '+' expr   { $$ = $1 + $3; }
+    | expr '*' expr   { $$ = $1 * $3; }
+    | NUMBER          { $$ = $1; }
+    ;
+```
+
+Generate the parser:
+
+```sh
+vyacc example.y -o parser.v
+v run parser.v
+```
+
+---
+
+## 🧪 Testing
+
+```sh
+v test .
 ```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are very welcome!
-Please fork the repository, create a feature branch, and submit a pull request.
-Feel free to open issues or discussions for bugs, features, or improvements.
+Contributions are **welcome**!
+
+- Fork the repository
+- Create a branch `feature/my-feature`
+- Submit a PR 🚀
 
 ---
 
-## 📄 License
+## 📜 License
 
-This project is licensed under the MIT License.
-See the [LICENSE](LICENSE) file for details.
+Vyacc is distributed under the [**MIT License**](/LICENSE.md).
+You are free to use, modify, and share it.
 
----
-
-## 💡 About
-
-Vlex is designed to be a foundation for building custom lexers in Vlang,
-allowing flexible token definitions and easy integration into parsers
-or other analysis tools.
-
----
-
-Happy lexing! 🎉
+Made with ❤️ by [Sigui Kessé Emmanuel](https://github.com/siguici).

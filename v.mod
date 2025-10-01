@@ -1,6 +1,6 @@
 Module {
-	name: 'vlex'
-	description: 'A lightweight and flexible lexer for Vlang.'
+	name: 'vyacc'
+	description: 'The next generation of Yacc, built in V.'
 	version: '0.0.0'
 	license: 'MIT'
 	dependencies: []
