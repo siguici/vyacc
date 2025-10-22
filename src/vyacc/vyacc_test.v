@@ -1,4 +1,4 @@
-module vlex
+module vyacc
 
 fn match_integer(input string) ?int {
 	mut i := 0
@@ -201,7 +201,6 @@ fn test_vlex() {
 	mut lexer := new(rules)
 
 	input := '
-    // Ceci est un commentaire
     var x = 123
     var y = 3.14
     var s = "Hello, "world"!"

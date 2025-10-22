@@ -1,4 +1,4 @@
-module vlex
+module vyacc
 
 pub struct Token {
 	type   string
